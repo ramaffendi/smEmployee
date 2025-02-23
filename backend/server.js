@@ -43,10 +43,13 @@ app.use("/api/dashboard", dashboardRoutes);
 
 // Connect to MongoDB
 mongoose
-  .connect("mongodb://127.0.0.1:27017/rsiaDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://ramadhan:12345@cluster0.pbcfv.mongodb.net/rsiadb?retryWrites=true&w=majority&appName=Cluster0",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
