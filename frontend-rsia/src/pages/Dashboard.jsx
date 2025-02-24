@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/employees");
+      const response = await axios.get("http://localhost:8080/api/employees");
       setEmployees(response.data);
     } catch (error) {
       console.error("Error fetching employees:", error);
@@ -34,7 +34,7 @@ const Dashboard = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5000/api/employees/${id}`);
+          await axios.delete(`http://localhost:8080/api/employees/${id}`);
           Swal.fire("Terhapus!", "Data berhasil dihapus.", "success");
           fetchEmployees();
         } catch (error) {

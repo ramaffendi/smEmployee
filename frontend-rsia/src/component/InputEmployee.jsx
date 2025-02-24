@@ -20,12 +20,12 @@ const InputEmployee = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/units")
+      .get("http://localhost:8080/api/units")
       .then((res) => setUnits(res.data))
       .catch((err) => console.error("Error fetching units:", err));
 
     axios
-      .get("http://localhost:5000/api/positions")
+      .get("http://localhost:8080/api/positions")
       .then((res) => setPositions(res.data))
       .catch((err) => console.error("Error fetching positions:", err));
   }, []);
@@ -80,7 +80,7 @@ const InputEmployee = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/employees",
+        "http://localhost:8080/api/employees",
         formData
       );
 

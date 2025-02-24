@@ -4,7 +4,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import "./App.css";
 import Home from "./pages/Homes";
 import Dashboard from "./pages/Dashboard";
 import LoginPage from "./pages/loginPage/Login";

@@ -21,18 +21,18 @@ const EditEmployee = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/units")
+      .get("http://localhost:8080/api/units")
       .then((res) => setUnits(res.data))
       .catch((err) => console.error("Error fetching units:", err));
 
     axios
-      .get("http://localhost:5000/api/positions")
+      .get("http://localhost:8080/api/positions")
       .then((res) => setPositions(res.data))
       .catch((err) => console.error("Error fetching positions:", err));
 
     if (id !== "new") {
       axios
-        .get(`http://localhost:5000/api/employees/${id}`)
+        .get(`http://localhost:8080/api/employees/${id}`)
         .then((res) => {
           const emp = res.data;
           setFormData({
@@ -85,11 +85,11 @@ const EditEmployee = () => {
 
     try {
       if (id === "new") {
-        await axios.post("http://localhost:5000/api/employees", dataToSend);
+        await axios.post("http://localhost:8080/api/employees", dataToSend);
         Swal.fire("Success!", "Employee berhasil ditambahkan!", "success");
       } else {
         await axios.put(
-          `http://localhost:5000/api/employees/${id}`,
+          `http://localhost:8080/api/employees/${id}`,
           dataToSend
         );
         Swal.fire("Success!", "Employee berhasil diupdate!", "success");

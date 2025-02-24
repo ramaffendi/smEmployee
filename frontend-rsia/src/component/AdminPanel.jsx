@@ -15,19 +15,21 @@ const AdminPanel = () => {
   }, []);
 
   const fetchUnits = async () => {
-    const response = await axios.get("http://localhost:5000/api/units");
+    const response = await axios.get("http://localhost:8080/api/units");
     setUnits(response.data);
   };
 
   const fetchPositions = async () => {
-    const response = await axios.get("http://localhost:5000/api/positions");
+    const response = await axios.get("http://localhost:8080/api/positions");
     setPositions(response.data);
   };
 
   const addUnit = async () => {
     if (!newUnit.trim()) return;
     try {
-      await axios.post("http://localhost:5000/api/units", { name: newUnit });
+      await axios.post("http://localhost:8080/api/units", {
+        name: newUnit,
+      });
       setNewUnit("");
       fetchUnits();
       Swal.fire("Success", "Unit added successfully!", "success");
@@ -39,7 +41,7 @@ const AdminPanel = () => {
   const addPosition = async () => {
     if (!newPosition.trim()) return;
     try {
-      await axios.post("http://localhost:5000/api/positions", {
+      await axios.post("http://localhost:8080/api/positions", {
         name: newPosition,
       });
       setNewPosition("");
@@ -63,7 +65,7 @@ const AdminPanel = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5000/api/${type}/${id}`);
+          await axios.delete(`http://localhost:8080/api/${type}/${id}`);
           type === "units" ? fetchUnits() : fetchPositions();
           Swal.fire("Deleted!", `${type} has been deleted.`, "success");
         } catch {
