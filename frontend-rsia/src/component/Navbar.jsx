@@ -15,7 +15,7 @@ const Navbar = ({ user, onLogout }) => {
       <div className="nav-user">
         {currentUser ? (
           <>
-            <span>{currentUser.username}</span>
+            <span>{currentUser.username.slice(0, 8)}</span>
             <button onClick={onLogout} className="nav-button">
               Logout
             </button>

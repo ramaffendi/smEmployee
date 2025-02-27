@@ -4,6 +4,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import "./Login.css";
 
+const API_URL = import.meta.env.VITE_API_URL; // Simpan dulu
+
 const LoginPage = ({ setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,15 +15,14 @@ const LoginPage = ({ setUser }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
+        `${API_URL}/api/auth/login`, // Pakai variabel
         { username, password },
         { withCredentials: true }
       );
 
       console.log("✅ Login berhasil, Data user:", response.data);
-      const userData = response.data.user; // Ambil hanya `user`
+      const userData = response.data.user;
 
-      // Simpan user ke localStorage dan state
       localStorage.setItem("user", JSON.stringify(userData));
       setUser(userData);
 
@@ -66,7 +67,6 @@ const LoginPage = ({ setUser }) => {
         <button type="submit">Login</button>
       </form>
 
-      {/* Tombol menuju halaman register */}
       <p>
         Belum punya akun?{" "}
         <button

@@ -12,7 +12,7 @@ import InputEmployee from "./component/InputEmployee";
 import Navbar from "./component/Navbar";
 import { useEffect, useState } from "react";
 import RegisterPage from "./pages/Register/RegisterPage";
-import AdminPanel from "./component/AdminPanel"; // Tambah import AdminPanel
+import AdminPanel from "./component/AdminPanel";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -21,8 +21,7 @@ const App = () => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
-      // console.log("User dari localStorage:", parsedUser);
-      setUser(parsedUser.user || parsedUser); // Ambil user dari object jika ada
+      setUser(parsedUser.user || parsedUser);
     }
   }, []);
 
@@ -32,7 +31,9 @@ const App = () => {
   };
 
   return (
-    <Router>
+    <Router basename="/home">
+      {" "}
+      {/* ✅ Mengubah basename menjadi "/home" */}
       <Navbar user={user} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />

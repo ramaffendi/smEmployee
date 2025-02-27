@@ -15,19 +15,23 @@ const AdminPanel = () => {
   }, []);
 
   const fetchUnits = async () => {
-    const response = await axios.get("http://localhost:8080/api/units");
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/units`
+    );
     setUnits(response.data);
   };
 
   const fetchPositions = async () => {
-    const response = await axios.get("http://localhost:8080/api/positions");
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/positions`
+    );
     setPositions(response.data);
   };
 
   const addUnit = async () => {
     if (!newUnit.trim()) return;
     try {
-      await axios.post("http://localhost:8080/api/units", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/units`, {
         name: newUnit,
       });
       setNewUnit("");
@@ -41,7 +45,7 @@ const AdminPanel = () => {
   const addPosition = async () => {
     if (!newPosition.trim()) return;
     try {
-      await axios.post("http://localhost:8080/api/positions", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/positions`, {
         name: newPosition,
       });
       setNewPosition("");
@@ -65,7 +69,9 @@ const AdminPanel = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:8080/api/${type}/${id}`);
+          await axios.delete(
+            `${import.meta.env.VITE_API_URL}/api/${type}/${id}`
+          );
           type === "units" ? fetchUnits() : fetchPositions();
           Swal.fire("Deleted!", `${type} has been deleted.`, "success");
         } catch {
@@ -77,7 +83,9 @@ const AdminPanel = () => {
 
   return (
     <div className="admin-panel">
-      <h2 className="admin-title">Admin Panel - Manage Units & Positions</h2>
+      <h2 className="admin-title">
+        Admin Panel - Manage Departments & Positions
+      </h2>
       <div className="admin-section">
         <h3>Units</h3>
         <ul className="admin-list">
@@ -102,7 +110,7 @@ const AdminPanel = () => {
             className="admin-input"
           />
           <button onClick={addUnit} className="add-btn">
-            Add Unit
+            Add Department
           </button>
         </div>
       </div>

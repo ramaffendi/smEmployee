@@ -10,7 +10,9 @@ const Dashboard = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/employees");
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/employees`
+      );
       setEmployees(response.data);
     } catch (error) {
       console.error("Error fetching employees:", error);
@@ -34,7 +36,9 @@ const Dashboard = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:8080/api/employees/${id}`);
+          await axios.delete(
+            `${import.meta.env.VITE_API_URL}/api/employees/${id}`
+          );
           Swal.fire("Terhapus!", "Data berhasil dihapus.", "success");
           fetchEmployees();
         } catch (error) {
@@ -62,7 +66,7 @@ const Dashboard = () => {
               <th>ID</th>
               <th>Name</th>
               <th>
-                Unit{" "}
+                Department{" "}
                 <button
                   className="btn-add-small"
                   onClick={() => navigate("/admin-panel")}

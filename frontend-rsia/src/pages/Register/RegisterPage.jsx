@@ -8,14 +8,14 @@ const RegisterPage = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false); // Default Employee (false)
+  const [isAdmin] = useState(false); // Default Employee (false)
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/register",
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
         {
           name,
           username,
@@ -66,16 +66,6 @@ const RegisterPage = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-
-        {/* Tambahkan Dropdown untuk memilih role */}
-        <select
-          className="register-input"
-          value={isAdmin}
-          onChange={(e) => setIsAdmin(e.target.value === "true")}
-        >
-          <option value="false">Employee</option>
-          <option value="true">Admin</option>
-        </select>
 
         <button type="submit" className="register-button">
           Register

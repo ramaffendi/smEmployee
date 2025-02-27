@@ -6,53 +6,90 @@
   padding: 15px 20px;
   background: #2c3e50;
   color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar .brand {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
-  color: #ecf0f1;
+  color: #1abc9c;
+  letter-spacing: 1px;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar .brand:hover {
+  color: #16a085;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
 .nav-links a {
-  margin: 0 15px;
   color: #ecf0f1;
   text-decoration: none;
   font-size: 1rem;
-  transition: color 0.3s;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .nav-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
   color: #1abc9c;
 }
 
 .nav-user {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .nav-user span {
-  margin-right: 10px;
   font-size: 1rem;
+  font-weight: 500;
+  color: #f1c40f;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .nav-button {
   background: #e74c3c;
   border: none;
   color: white;
-  padding: 8px 12px;
+  padding: 8px 14px;
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s ease-in-out, transform 0.2s;
 }
 
 .nav-button:hover {
   background: #c0392b;
+  transform: scale(1.05);
+}
+
+/* Efek untuk tampilan mobile */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-user {
+    margin-top: 10px;
+  }
 }
